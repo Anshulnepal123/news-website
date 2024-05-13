@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title%} home {% endblock title%}</title>
+  <link rel="stylesheet" href="/static/home.css">
+</head>
+
+<body>
+  
+  <main class="container">
+    <section class="news-article">
+      <h2>Breaking News</h2>
+      <p>Here you can find  the news articles related to  Entertainment, Business, Science, Factcheck etc expect our exsiting categories news articles.</p>
+      <a href="breaking" class="read-more">Read more</a>
+    </section>
+
+    <section class="news-article">
+      <h2>Politics</h2>
+      <p>Here you can find all the political news both national and international.</p>
+      <a href="politics" class="read-more">Read more</a>
+    </section>
+
+    <section class="news-article">
+      <h2>Sports</h2>
+      <p>Here you can find all the Sports related news both national and international</p>
+      <a href="sports" class="read-more">Read more</a>
+    </section>
+
+    <section class="news-article">
+      <h2>Technology</h2>
+      <p>Here you can find all technology related news both national and international.</p>
+      <a href="technology" class="read-more">Read more</a>
+    </section>
+  </main>
+
+  <div class="quote-container">
+  <h3>Quote of the Day</h3>
+  <blockquote>
+    <div class='quote'></div>
+   
+  </blockquote>
+  
+</div>
+ <script src="static/index.js"></script>
+</body>
+
+</html>
+{% endblock body %}

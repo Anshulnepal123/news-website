@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Nepal times-{% block title%}  {% endblock title%}</title>
+      <link rel="stylesheet" href="static/home.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+          <h1> <a href="/index">The Nepal Times</a> </h1>
+          <nav>
+            <b class ='weather' onclick= climate()></b>
+            <div class="modal">
+              <p class="p">Change Weather</p>
+              <input type="text" id = 'city-name' placeholder="Enter a City Name">
+              <p class ='weatherdetails'></p>
+              <button id = 'search' onclick=getWeather()>Search</button>
+              <button id = 'close' onclick="closed()">Close</button>
+            </div>
+              
+            </b>
+            <ul>
+              <li><a href="/index">Home</a></li>
+              <li><a href="/politics">Politics</a></li>
+              <li><a href="/sports">Sports</a></li>
+              <li><a href="/technology">Technology</a></li>
+            </ul>
+            <b class="date"></b>
+          </nav>
+          <script src="/static/base.js"></script>
+        </div>
+      </header>
+      {% block body %}{% endblock body %}
+      <footer>
+        <!-- <p>&copy; 2024 News Today. All rights reserved.</p> -->
+      </footer>
+</body>
+</html>

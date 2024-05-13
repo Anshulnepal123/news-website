@@ -1,0 +1,97 @@
+/* sports.css */
+
+.banner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Space between items */
+    max-width: 1400px; /* Increased width */
+    margin: 0 auto;
+}
+
+.news-item {
+    width: calc(50% - 20px); /* Two items per row with margin */
+    margin-bottom: 40px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex; /* Display items in a row */
+    margin-right: 20px; /* Space between items */
+    transition: transform 0.3s ease; /* Smooth transition for transform */
+    margin-top: 10px;
+}
+
+.news-item:last-child {
+    margin-right: 0; /* Remove margin for last item */
+}
+
+.news-item:hover {
+    transform: translateY(-5px); /* Move up on hover */
+}
+
+.news-content {
+    flex: 1; /* Take remaining space */
+    padding: 20px;
+}
+
+.news-content h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.news-content h1 a {
+    text-decoration: none; /* Remove underline */
+    color: black; /* Text color */
+}
+
+.news-content h1 a:hover {
+    color: #555; /* Hover color */
+}
+
+.news-content .summary {
+    color: #555;
+    margin-bottom: 10px; /* Add some space below summary */
+}
+
+.author-date {
+    color: #777;
+    font-size: 14px; /* Smaller font size */
+    margin: 0;
+}
+
+.news-image-container {
+    width: 20%; /* Width for the image container */
+    overflow: hidden;
+}
+
+.news-image {
+    width: 100%; /* Make the image take full width */
+    height: auto;
+    display: block;
+    max-height: 150px; /* Limit the height of the image */
+    object-fit: cover; /* Cover the image container */
+    border-top-right-radius: 8px; /* Rounded corners */
+    border-bottom-right-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .news-item {
+        width: 100%; /* Full width on smaller screens */
+        flex-wrap: wrap; /* Wrap items */
+        margin-right: 0; /* Remove margin */
+    }
+
+    .news-content {
+        width: 100%; /* Full width for content */
+    }
+
+    .news-image-container {
+        width: 100%; /* Full width for image container */
+        max-width: 100%; /* Full width for image */
+    }
+
+    .news-image {
+        border-top-right-radius: 0; /* Remove rounded corners */
+        border-bottom-right-radius: 0;
+    }
+}

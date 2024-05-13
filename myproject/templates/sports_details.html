@@ -1,0 +1,321 @@
+{% extends 'base.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%}{{news_list.heading}}{%endblock title%}</title>
+    <style>
+        /* Reset some default styles */
+        body, h1, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Body styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+
+        /* Container for news details */
+        .news-detail-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            float: left; /* Display on the left side */
+            width: 60%; /* 60% of the width */
+            margin-right: 20px; /* Add some space between main news and other news */
+        }
+
+        /* Headline style */
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* Author and Date */
+        .author-date {
+            margin-bottom: 20px;
+        }
+
+        .author-date p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #777;
+        }
+
+        /* Image style */
+        .news-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        /* Summary style */
+        .summary {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Description style */
+        .description {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .news-detail-container {
+                width: 100%; /* Full width on smaller screens */
+                float: none; /* Remove float */
+                margin-right: 0; /* Remove margin on smaller screens */
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .summary {
+                font-size: 14px;
+            }
+
+            .description {
+                font-size: 16px;
+            }
+        }
+
+        .banner {
+            /* Display on the right side */
+            float: right;
+            width: 35%; /* 35% of the width */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .news-item {
+            width: 100%; /* Take full width of banner */
+            margin-bottom: 20px;
+            display: flex;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+        }
+
+        .news-content {
+            flex-grow: 1;
+            padding: 10px;
+        }
+
+        .news-content h1 a {
+            font-weight: bold;
+            font-size: 24px;
+            margin: 0;
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            color: #007bff;
+        }
+
+        .news-content .summary {
+            font-weight: 500;
+            margin: 5px 0;
+        }
+
+        .author-date {
+            margin-top: 10px;
+        }
+
+        .author-date p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .news-image-container {
+            width: 45%;
+            padding: 10px;
+        }
+
+        .news-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            float: right;
+        }
+
+        .news-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-content h1 a:hover {
+            color: dimgray;
+        }
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        header h1{
+            text-align: center;
+        }
+        header h1 a {
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: white;
+        }
+        header h1 a:hover{
+            color:#ffc107;
+        }
+        nav ul {
+            list-style-type: none;
+            text-align: center;
+        }
+        
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #ffc107;
+        }
+        .date  {
+            display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.weather{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.modal {
+    display: none;
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 400px;
+    overflow: auto;
+    padding: 10px;
+    margin: 14vh 0vh 0px 150vh;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+    </style>
+</head>
+<body>
+    <div class="section1">
+        <div class="news-detail-container">
+            <h1>{{ news_list.heading }}</h1>
+            <p class="summary">{{ news_list.summary }}</p>
+            <img src="{{ news_list.photo.url }}" alt="{{ news_list.heading }}" class="news-image">
+            <p class="description">{{ news_list.description }}</p>
+            <div class="author-date">
+                <p>By: {{ news_list.author }}</p>
+                <p>Date: {{ news_list.date }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Display other news items -->
+    <div class="banner">
+        {% for n in news_list2 %}
+            {% if n.pk != news_list.pk %}
+            <!-- Exclude the current news item being viewed -->
+            <div class="news-item">
+                <div class="news-content">
+                    <h1><a href="{% url 'sports_detail' pk=n.pk %}">{{ n.heading }}</a></h1>
+                    <p class="summary">{{ n.summary }}</p>
+                    <div class="author-date">
+                        <p class="author">By: {{ n.author }}</p>
+                        <p class="date">Date: {{ n.date }}</p>
+                    </div>
+                </div>
+                <div class="news-image-container">
+                    <img src="{{ n.photo.url }}" alt="{{ n.heading }}" class="news-image">
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% endblock %}
+    <script>
+        // Select the element with class 'date'
+let dates = document.querySelector('.date');
+
+// Create a new Date object
+let current_date = new Date();
+
+// Define arrays for day of week and month names
+let dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+let monthOfYear = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+// Get the day, month, date, and year
+let day = dayOfWeek[current_date.getDay()];
+let month = monthOfYear[current_date.getMonth()];
+let date = current_date.getDate();
+let year = current_date.getFullYear();
+//Get the hours, min, sec
+// Update the innerHTML of the element with the formatted date
+dates.innerHTML = `${day}, ${month} ${date}, ${year}`;
+
+
+const weather = () => {
+const apikey = '7d9f6c3259a413336f3e08c98031193e';
+const city = 'Kathmandu'
+let we = document.querySelector('.weather');
+const currentWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`;
+
+fetch(currentWeatherUrl)
+.then(response => {
+if (!response.ok) {
+    throw new Error('Network response was not ok');
+}
+return response.json();
+})
+.then(data => {
+const weatherElement = document.querySelector('.weather');
+const tempinc = data.main.temp - 273.15
+// Assuming the structure of the weather data is like: { temperature: 20, description: "Sunny" }
+weatherElement.textContent = `${tempinc.toFixed(2)}°C, ${data.name}`;
+})
+.catch(error => {
+console.error('There was a problem with the fetch operation:', error);
+});
+};
+weather();
+    </script>
+</body>
+</html>

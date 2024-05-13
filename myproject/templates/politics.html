@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%}Politics{%endblock title%}</title>
+    <link rel="stylesheet" href="static/politics.css">
+</head>
+<body>
+    <div class="banner">
+        {% for n in news_list %}
+        <div class="news-item">
+            <div class="news-content">
+                <h1><a href="{% url 'politics_detail' pk=n.pk %}">{{ n.heading }}</a></h1>
+                <p class="summary">{{ n.summary }}</p>
+                <div class="author-date">
+                    <p class="author">By: {{ n.author }}</p>
+                    <p class="date">Date: {{ n.date }}</p>
+                </div>
+            </div>
+            <div class="news-image-container">
+                <img src="{{ n.photo.url }}" alt="{{ n.heading }}" class="news-image">
+            </div>
+        </div>
+        {% endfor %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if service_detail.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ service_detail.previous_page_number }}">previous</a>
+                {% endif %}
+            
+                <span class="current">
+                    Page {{ service_detail.number }} of {{ service_detail.paginator.num_pages }}.
+                </span>
+            
+                {% if service_detail.has_next %}
+                    <a href="?page={{ service_detail.next_page_number }}">next</a>
+                    <a href="?page={{ service_detail.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        
+</body>
+</html>
+{% endblock body %}

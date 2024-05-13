@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%}Technology{%endblock title%} </title>
+    <link rel="stylesheet" href="static/sports.css">
+</head>
+<body>
+    <div class="banner">
+        {% for n in news_list %}
+        <div class="news-item">
+            <div class="news-content">
+                <h1><a href="{% url 'technology_detail' pk=n.pk %}">{{ n.heading }}</a></h1>
+
+                <p class="summary">{{ n.summary }}</p>
+                <div class="author-date">
+                    <p class="author">Author: {{ n.author }}</p>
+                    <p class="date">Date: {{ n.date }}</p>
+                </div>
+            </div>
+            <div class="news-image-container">
+                <img src="{{ n.photo.url }}" alt="{{ n.heading }}" class="news-image">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+{% endblock body %}
