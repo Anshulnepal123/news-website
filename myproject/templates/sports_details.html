@@ -218,21 +218,62 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    cursor: pointer;
+}
+.weather:hover{
+    color: #ffc107;
 }
 .modal {
     display: none;
     position: absolute;
     z-index: 10;
-    left: 0;
-    top: 0;
-    width: 250px;
-    height: 400px;
-    overflow: auto;
-    padding: 10px;
-    margin: 14vh 0vh 0px 150vh;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
+    left: 90%;
+    top: 41%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
 
+input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: calc(100% - 24px);
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ffc107;;
+}
+p{
+    color: #333;   
+}
+.sun {
+    margin-right: 8px; /* Add some spacing between the elements if needed */
+
+}
+.sun :hover{
+    color: #ffc107;
+    cursor: pointer;
+}
     </style>
 </head>
 <body>

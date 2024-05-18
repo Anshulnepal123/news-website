@@ -55,7 +55,6 @@ dates.innerHTML = `${day}, ${month} ${date}, ${year}`;
 
 
 
-//W---E---A---T---H---E---R
 //Step1:this code will execute first it will send the city name to weather after that
 const getWeather = () => {
     const cityName = document.getElementById('city-name').value;
@@ -96,7 +95,7 @@ const displayweather = (data)=>{
     const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@4x.png`
     const tempinc = data.main.temp - 273.15
 // Assuming the structure of the weather data is like: { temperature: 20, description: "Sunny" }
-    weatherElement.textContent = `${tempinc.toFixed(2)}°C, ${data.name}`
+    weatherElement.innerHTML= ` <img src="/static/sun.png" alt="img" class="sun">${tempinc.toFixed(2)}°C, ${data.name}`
     weatherdetail.innerHTML =  `<p>City: ${data.name}</p>
     <p>Temperature: ${(data.main.temp - 273.15).toFixed(2)}°C</p>
     <p>Description: ${data.weather[0].description}</p>
@@ -105,6 +104,7 @@ const displayweather = (data)=>{
     <p>Pressure: ${data.main.pressure} hPa</p>`
 
 }
+
 /*modal*/
 let modal = document.querySelector('.modal')
 let climate = () =>{
