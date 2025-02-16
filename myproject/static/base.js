@@ -65,7 +65,7 @@ const getWeather = () => {
 //weather update
 //step2 :weather will recive the city name and and put it in the api which gives all the information 
 //about that particular palce
-const weather = (city ='kathmandu') => {
+const weather = (city ='sydney') => {
     const apikey = '7d9f6c3259a413336f3e08c98031193e';
     let we = document.querySelector('.weather');
     const currentWeatherUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`;
